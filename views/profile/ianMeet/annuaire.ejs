@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <title>
+        <%= title %>
+    </title>
+
+    <%- include ../template/head.ejs -%>
+
+
+    <link rel="stylesheet" href="/stylesheets/cloud.css">
+
+</head>
+
+<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+    <div class="wrapper">
+
+
+
+        <%- include ../template/navbar.ejs -%>
+
+
+        <%- include("../template/sidebar", {user:user}); -%>
+
+
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <div class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1 class="m-0 text-dark">Mon Annuaire</h1>
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item text-warning">Accueil</li>
+                                <li class="breadcrumb-item text-warning">ianMeet</li>
+                                <li class="breadcrumb-item active">Mon Annuaire</li>
+                            </ol>
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                    <!-- /.row -->
+                </div>
+                <!-- /.container-fluid -->
+            </div>
+            <!-- /.content-header -->
+
+
+
+
+            <!-- Main content -->
+            <section class="content">
+                <div class="container-fluid container-fichiers">
+                    <ul style="list-style-type: none; display: flex; flex-direction: row; justify-content: start">
+
+
+                        <% for (i in contacts) { %>
+
+                        <li>
+                            <div class="card" style="width: 4.5cm; height: 5.2cm; margin: 0.2cm">
+                                <% if (contacts[i].photo_profil) { %>
+                                <img src="/uploads/avatar/<%= contacts[i].photo_profil %>" class="card-img-top"
+                                    alt="<%= contacts[i].prenoms %> <%= contacts[i].nom %>">
+                                <% } else { %>
+                                <i class="nav-icon fas fa-user fa-5x text-center mt-3"></i>
+                                <% } %>
+                                <button type="button" class="btn btn-light btn-lg"
+                                    style="border-radius: 50%; position: relative; bottom: 0.5cm; left: 3.1cm; width: 0.9cm; height: 1.5cm; padding: 0"
+                                    data-id="<%= contacts[i].id %>" data-nom="<%= contacts[i].nom %>"
+                                    data-prenoms="<%= contacts[i].prenoms %>" data-email="<%= contacts[i].email %>"
+                                    data-tel="<%= contacts[i].tel %>" onclick="add_contact(this)">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                                <div class="card-body text-center"
+                                    style="height: 4cm; padding: 0; position: relative; bottom: 0.5cm">
+                                    <h3 class="profile-username text-center" style="margin: 0">
+                                        <%= contacts[i].prenoms %> <%= contacts[i].nom %>
+                                    </h3>
+                                    <p class="text-muted text-center" style="margin: 0; font-size: 90%">
+                                        <%= contacts[i].email %>
+                                    </p>
+
+                                    <p class="text-muted text-center">
+                                        <%= contacts[i].profession %>
+                                    </p>
+                                </div>
+                            </div>
+                        </li>
+
+                        <% } %>
+
+                    </ul>
+
+
+                </div>
+                <!--/. container-fluid -->
+            </section>
+            <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+
+        <!-- Control Sidebar -->
+        <%- include ../template/controlSidebar.ejs -%>
+        <!-- /.control-sidebar -->
+
+    </div>
+    <!-- ./wrapper -->
+
+    <!-- REQUIRED SCRIPTS -->
+    <%- include ../template/requiredScripts.ejs -%>
+
+
+    <script>
+
+        function add_contact(e) {
+
+            var data = {
+                nom: $(e).attr("data-nom"),
+                prenoms: $(e).attr("data-prenoms"),
+                email: $(e).attr("data-email"),
+                telephone: $(e).attr("data-tel"),
+                id_contact: $(e).attr("data-id")
+            }
+
+            $.post("/ianMeet/add_contact", data, function (result) {
+                if (result[1]) {
+                    $(e).parentsUntil("li").remove();
+                    show_success_box(result[0])
+                } else {
+                    show_error_box(result[0])
+                }
+            })
+        }
+
+    </script>
+</body>
+
+</html>

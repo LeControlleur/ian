@@ -1,0 +1,18 @@
+.list-group-item {
+    background-color: initial;
+    border: none;
+    padding-top: 0.2cm;
+    padding-bottom: 0.2cm;
+}
+
+ul a {
+    color: black;
+}
+
+ul a :hover {
+    color: black;
+}
+
+.user {
+    border-right: solid gray 2px
+}

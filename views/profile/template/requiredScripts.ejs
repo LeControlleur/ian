@@ -1,0 +1,88 @@
+<!-- REQUIRED SCRIPTS -->
+<!-- jQuery -->
+<script src="/profile/plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap -->
+<script src="/profile/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- overlayScrollbars -->
+<script src="/profile/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+<!-- AdminLTE App -->
+<script src="/profile/dist/js/adminlte.js"></script>
+
+
+
+
+<!--    Plugin de jQuery qui permet la validation des formulaires   -->
+<script src="/profile/plugins/jquery-validate/jquery.validate.min.js"></script>
+
+
+
+
+<script src="/javascripts/show_box.js"></script>
+
+
+<script>
+    $(function () {
+        var url = window.location.href;
+        if (url.indexOf("#") != -1) {
+            url = url.substring(0, url.indexOf("#"));
+        }
+
+        var sidebar = $("aside div.sidebar nav ul li a")
+        sidebar.filter(function (index, elt) {
+            //  console.log(elt.parentElement.parentElement)
+            return (elt.href === url || elt.href === url + "/")
+        })
+            .addClass("active")
+            .css("color", "black")
+
+        sidebar = $("aside div.sidebar nav ul li a.active")[0]
+        sidebar = sidebar.parentElement.parentElement.previousElementSibling
+        if (sidebar != null) {
+            if (sidebar.className === "nav-link") {
+                sidebar = sidebar.parentElement
+                sidebar.className = sidebar.className + " menu-open"
+            }
+        }
+    });
+</script>
+
+
+<script src="/socket.io/socket.io.js"></script>
+
+
+<!--    
+<script>
+
+    var socket = io.connect()
+
+    socket.on("error", function (message) {
+        show_error_box(message)
+    })
+
+    socket.on("success", function (message) {
+        show_success_box(message)
+    })
+
+</script>
+-->
+
+
+<!--    
+
+<% if (typeof(error) == 'object') { %>
+<div id="error_box"><%= error %></div>
+<script>
+    show_error_box($("#error_box").val())
+    $("#error_box").val("")
+</script>
+<% } %>
+
+<% if (typeof(success) == 'object') { %>
+<div id="success_box"><%= success %></div>
+<script>
+    show_success_box($("#success_box").val())
+    $("#success_box").val("")
+</script>
+<% } %>
+
+-->

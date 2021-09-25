@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <title>
+        <%= title %>
+    </title>
+
+    <%- include template/head.ejs -%>
+
+
+    <style>
+        #photoDeProfil :hover {
+            cursor: pointer;
+        }
+    </style>
+
+</head>
+
+<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+    <div class="wrapper">
+
+
+
+        <%- include template/navbar.ejs -%>
+
+
+        <%- include("template/sidebar", {user:user}); -%>
+
+
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <div class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1 class="m-0 text-dark">
+                                <!-- Button trigger modal -->
+                                <a href="" style="color: black; font-style: normal; text-decoration-line: none"
+                                    data-toggle="modal" data-target="#modifierInformations">
+                                    Modifier mes informations
+                                </a>
+                            </h1>
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item text-warning">Accueil</li>
+                                <li class="breadcrumb-item active">
+                                    <%= title %>
+                                </li>
+                            </ol>
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                    <!-- /.row -->
+                </div>
+                <!-- /.container-fluid -->
+            </div>
+            <!-- /.content-header -->
+
+
+
+
+            <!-- Main content -->
+            <section class="content">
+                <div class="container-fluid">
+
+
+                    <!-- Main content -->
+                    <section class="content">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-md-12" style="display: flex; justify-content: space-around">
+
+                                    <!-- Profile Image -->
+                                    <div class="card card-warning card-outline col-lg-4 col-md-4">
+                                        <div class="card-body box-profile">
+                                            <!-- Button trigger modal -->
+                                            <div class="text-center" id="photoDeProfil">
+                                                <% if(user.photo_profil) { %>
+                                                <img class="profile-user-img img-fluid img-circle" data-toggle="modal"
+                                                    data-target="#modifierPhoto"
+                                                    src="/uploads/avatar/<%= user.photo_profil %>"
+                                                    alt="User profile picture" id="photo_profil">
+                                                <% } else { %>
+                                                <i class="nav-icon fas fa-user-circle fa-5x" data-toggle="modal"
+                                                    data-target="#modifierPhoto"></i>
+                                                <% } %>
+                                            </div>
+
+
+
+                                            <h3 class="profile-username text-center"><%= user.prenoms %> <%= user.nom %>
+                                            </h3>
+
+                                            <p class="text-muted text-center"><%= user.profession %></p>
+
+                                            <ul class="list-group list-group-unbordered mb-3">
+                                                <li class="list-group-item">
+                                                    <%= user.email %></br>
+                                                    <%= user.tel %>
+                                                </li>
+                                                <li class="list-group-item">
+                                                    <b>Projets</b> <a class="float-right">1</a>
+                                                </li>
+                                                <li class="list-group-item">
+                                                    <b>Groupe</b> <a class="float-right">1</a>
+                                                </li>
+                                                <li class="list-group-item">
+                                                    <b>Partenaire</b> <a class="float-right">4</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <!-- /.card-body -->
+                                    </div>
+                                    <!-- /.card -->
+
+                                    <!-- About Me Box -->
+                                    <div class="card card-warning col-lg-7 col-md-7" style="padding: 0">
+                                        <div class="card-header">
+                                            <h3 class="card-title">A propos de moi</h3>
+                                        </div>
+                                        <!-- /.card-header -->
+                                        <div class="card-body">
+                                            <strong><i class="fas fa-book mr-1"></i> Education</strong>
+
+                                            <p class="text-muted">
+                                                <%= user.education %>
+                                            </p>
+
+                                            <hr>
+
+                                            <strong><i class="fas fa-map-marker-alt mr-1"></i>
+                                                Résidence</strong>
+
+                                            <p class="text-muted">
+                                                <%= user.residence %>
+                                            </p>
+
+                                            <hr>
+
+                                            <strong><i class="fas fa-pencil-alt mr-1"></i> Aptitudes</strong>
+
+                                            <p class="text-muted">
+                                                <%= user.aptitudes %>
+                                            </p>
+
+                                            <hr>
+
+                                            <strong><i class="far fa-file-alt mr-1"></i> Notes</strong>
+
+                                            <p class="text-muted">
+                                                <%= user.notes %>
+                                            </p>
+                                        </div>
+                                        <!-- /.card-body -->
+                                    </div>
+                                    <!-- /.card -->
+
+
+                                </div>
+                                <!-- /.col -->
+                            </div>
+                            <!-- /.row -->
+
+
+
+
+
+                        </div>
+                        <!--/. container-fluid -->
+                    </section>
+                    <!-- /.content -->
+
+
+
+
+
+
+
+
+
+                    <!-- Profile modification modal -->
+                    <div class="modal fade" id="modifierInformations" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalScrollableTitle">
+                                        Modifier mes informations
+                                    </h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="form">
+                                        <div class="form-group">
+                                            <div class="form-inline">
+                                                <input type="text" name="nom" id="nom" placeholder="Nom"
+                                                    value="<%= user.nom %>" class="form-control col-md-4">
+                                                <input type="text" name="prenoms" id="prenoms"
+                                                    value="<%= user.prenoms %>" placeholder="Prénoms"
+                                                    class="form-control col-md-7 offset-md-1">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="form-group">
+                                                <input type="text" name="profession" id="profession"
+                                                    placeholder="Profession" value="<%= user.profession %>"
+                                                    class="form-control col-md-12" style="margin-bottom: 10px"
+                                                    data-last="1">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="form-group">
+                                                <input type="tel" name="tel" id="tel" placeholder="Numéro de téléphone"
+                                                    value="<%= user.tel %>" class="form-control col-md-12"
+                                                    style="margin-bottom: 10px" data-last="1">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <textarea class="form-control" id="education" rows="3"
+                                                placeholder="Education"><%= user.education %></textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" name="residence" id="residence"
+                                                value="<%= user.residence %>" placeholder="Lieu de résidence"
+                                                class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <textarea class="form-control" id="aptitudes" rows="3"
+                                                placeholder="Aptitudes"><%= user.aptitudes %></textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <textarea class="form-control" id="notes" rows="3"
+                                                placeholder="Notes"><%= user.notes %></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                                    <button type="button" class="btn btn-primary" id="save_infos">Enregistrer</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+                </div>
+                <!-- /.content-wrapper -->
+
+
+                <!-- Control Sidebar -->
+                <%- include template/controlSidebar.ejs -%>
+                <!-- /.control-sidebar -->
+
+        </div>
+        <!-- ./wrapper -->
+
+
+
+
+
+
+
+        <!-- Modal -->
+        <div class="modal fade" id="modifierPhoto" tabindex="-1" role="dialog" aria-labelledby="modifierPhotoTitle"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered" role="document">
+                <form action="/users/change_profile_image" method="POST" id="change_photo_form" enctype="multipart/form-data">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modifierPhotoTitle">
+                                Modifier ma photo de profil
+                            </h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" name="avatar" id="avatar" required>
+                                <label class="custom-file-label" for="file" data-browse="Choisir">
+                                    Selectionner un fichier
+                                </label>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                            <button type="submit" class="btn btn-primary" id="change_image">
+                                Enregistrer
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
+
+        <!-- REQUIRED SCRIPTS -->
+        <%- include template/requiredScripts.ejs -%>
+
+
+        <!--    Script de traitement des formulaires-->
+        <script>
+
+            $().ready(function () {
+                $("#save_infos").click(() => {
+                    var data = {
+                        "nom": $("#nom").val(),
+                        "prenoms": $("#prenoms").val(),
+                        "profession": $("#profession").val(),
+                        "tel": $("#tel").val(),
+                        "education": $("#education").val(),
+                        "residence": $("#residence").val(),
+                        "aptitudes": $("#aptitudes").val(),
+                        "notes": $("#notes").val()
+                    }
+
+                    $.post("/users/change_infos", data, (result) => {
+                        console.log(result)
+                        if (result[1]) {
+                            show_success_box(result[0])
+                        } else {
+                            show_error_box(result[0])
+                        }
+
+                        location = "/users/monprofile/update"
+                    })
+
+                    $("#modifierInformations").modal("hide")
+                })
+
+            }) 
+
+        </script>
+
+
+</body>
+
+</html>

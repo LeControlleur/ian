@@ -1,0 +1,201 @@
+#!/usr/bin/env node
+
+/**
+ * Module dependencies.
+ */
+
+var app = require('../app');
+var debug = require('debug')('ian:server');
+var https = require('https');
+const fs = require('fs')
+const path = require('path')
+
+
+var connection = require("../databases/connection")
+var createError = require('http-errors');
+
+
+
+
+/**
+ * Get port from environment and store in Express.
+ */
+
+var port = normalizePort(process.env.PORT || '9000');
+app.set('port', port);
+
+
+/**
+ *  Set options for the https server
+ */
+const httpsConfig = {
+    key: fs.readFileSync(path.join(__dirname, '..', 'ssl', 'server.key')),
+    cert: fs.readFileSync(path.join(__dirname, '..', 'ssl', 'server.crt'))
+}
+
+
+/**
+ * Create https server.
+ */
+var server = https.createServer(httpsConfig, app);
+
+
+
+
+//  Importation de socket.io
+var io = require("socket.io").listen(server)
+
+
+
+
+
+
+
+
+
+/**
+ * Create RTCMultiConnectionServer for the video chat
+ */
+
+
+
+var RTCMultiConnectionServer = require('rtcmulticonnection-server');
+//  var ioServer = require('socket.io');
+
+
+var config = {
+    /*
+	"socketURL": "/",
+	"dirPath": "",
+  "homePage": "/",
+  */
+    "socketMessageEvent": "RTCMultiConnection-Message",
+    "socketCustomEvent": "RTCMultiConnection-Custom-Message",
+    "port": 9000,
+    "enableLogs": true,
+    "isUsehttps": true,
+    "enableAdmin": false
+};
+
+
+
+RTCMultiConnectionServer.beforeHttpListen(server, config);
+server = server.listen(port, function () {
+    RTCMultiConnectionServer.afterHttpListen(server, config);
+});
+
+// --------------------------
+// socket.io codes goes below
+
+
+
+io.sockets.on('connection', function (socket) {
+    RTCMultiConnectionServer.addSocket(socket);
+
+    // ----------------------
+    // below code is optional
+
+    const params = socket.handshake.query;
+
+    if (!params.socketCustomEvent) {
+        params.socketCustomEvent = 'custom-message';
+    }
+
+    socket.on(params.socketCustomEvent, function (message) {
+        socket.broadcast.emit(params.socketCustomEvent, message);
+    });
+
+
+});
+
+
+
+
+
+
+
+/**
+ * Listen on provided port, on all network interfaces.
+ */
+
+//  server.listen(port);
+server.on('error', onError);
+server.on('listening', onListening);
+
+/**
+ * Normalize a port into a number, string, or false.
+ */
+
+function normalizePort(val) {
+    var port = parseInt(val, 10);
+
+    if (isNaN(port)) {
+        // named pipe
+        return val;
+    }
+
+    if (port >= 0) {
+        // port number
+        return port;
+    }
+
+    return false;
+}
+
+/**
+ * Event listener for HTTPS server "error" event.
+ */
+
+function onError(error) {
+    if (error.syscall !== 'listen') {
+        throw error;
+    }
+
+    var bind = typeof port === 'string' ?
+        'Pipe ' + port :
+        'Port ' + port;
+
+    // handle specific listen errors with friendly messages
+    switch (error.code) {
+        case 'EACCES':
+            console.error(bind + ' requires elevated privileges');
+            process.exit(1);
+            break;
+        case 'EADDRINUSE':
+            console.error(bind + ' is already in use');
+            process.exit(1);
+            break;
+        default:
+            throw error;
+    }
+}
+
+/**
+ * Event listener for https server "listening" event.
+ */
+
+function onListening() {
+    var addr = server.address();
+    var bind = typeof addr === 'string' ?
+        'pipe ' + addr :
+        'port ' + addr.port;
+    debug('Listening on ' + bind);
+}
+
+
+/**
+ *  /Create RTCMultiConnectionServer for the video chat
+ */
+
+
+
+
+
+
+
+console.log(__dirname)
+
+
+
+
+

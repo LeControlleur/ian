@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <title>
+        <%= title %>
+    </title>
+
+    <%- include ../template/head.ejs -%>
+
+
+    <link rel="stylesheet" href="/stylesheets/forum.css">
+
+</head>
+
+<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+    <div class="wrapper">
+
+
+
+        <%- include ../template/navbar.ejs -%>
+
+
+        <%- include("../template/sidebar", {user:user}); -%>
+
+
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <div class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1 class="m-0 text-dark">
+                                <%= title %>
+                            </h1>
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item text-warning">Accueil</a></li>
+                                <li class="breadcrumb-item text-warning">ianWork</a></li>
+                                <li class="breadcrumb-item text-warning">Mon forum</a></li>
+                                <li class="breadcrumb-item active">Sujet</li>
+                            </ol>
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                    <!-- /.row -->
+                </div>
+                <!-- /.container-fluid -->
+            </div>
+            <!-- /.content-header -->
+
+
+
+
+            <section class="content row d-flex justify-content-center">
+
+                <div class="card col-lg-10 col-md-10 center">
+
+                    <div class="card-header">
+
+                        <div class="card-text user-panel d-flex flex-row justify-content-start align-items-center">
+                            <img class="img-circle" src="/profile/dist/img/user2-160x160.jpg"
+                                class="img-circle elevation-2" alt="User Image">
+                            <div class="d-flex flex-column justify-content-center ml-3"
+                                style="color: dimgray; font-size: x-small">
+                                <a href="#" style="color: dimgray">
+                                    Eliud Tiemele,
+                                    <span>
+                                        Dévéloppeur
+                                    </span>
+                                </a>
+                                28/02/2018 à 18:00
+                            </div>
+                        </div>
+
+                        <h3 class="pl-5">
+                            Quelles sont les principales différences entre programmation fonctionnelle et programmation
+                            orientée objet ?
+                        </h3>
+
+                        3 réponses
+                    </div>
+
+
+
+                    <div class="card-body">
+
+
+                        <div class="row mb-3">
+                            <div class="col-lg-3 col-md-3 col-sm-3 user">
+                                <div
+                                    class="card-text user-panel d-flex flex-row justify-content-start align-items-center">
+                                    <img class="img-circle" src="/profile/dist/img/user2-160x160.jpg"
+                                        class="img-circle elevation-2" alt="User Image">
+                                    <div class="d-flex flex-column justify-content-center ml-3"
+                                        style="color: dimgray; font-size: x-small">
+                                        <a href="#" style="color: dimgray">
+                                            Eliud Tiemele,
+                                            <span>
+                                                Dévéloppeur
+                                            </span>
+                                        </a>
+                                        28/02/2018 à 18:00
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <p class="col-lg-9 col-md-9 col-sm-9" style="text-align: justify">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores ipsum maxime dolore
+                                cumque
+                                non odio. Libero ipsa vero facilis tempora vitae? Soluta facilis accusantium explicabo
+                                vero
+                                dolore iste aliquam nisi!
+
+                            </p>
+
+                        </div>
+
+
+                        <div class="row mb-3">
+                            <div class="col-lg-3 col-md-3 col-sm-3 user">
+                                <div
+                                    class="card-text user-panel d-flex flex-row justify-content-start align-items-center">
+                                    <img class="img-circle" src="/profile/dist/img/user2-160x160.jpg"
+                                        class="img-circle elevation-2" alt="User Image">
+                                    <div class="d-flex flex-column justify-content-center ml-3"
+                                        style="color: dimgray; font-size: x-small">
+                                        <a href="#" style="color: dimgray">
+                                            Eliud Tiemele,
+                                            <span>
+                                                Dévéloppeur
+                                            </span>
+                                        </a>
+                                        28/02/2018 à 18:00
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <p class="col-lg-9 col-md-9 col-sm-9" style="text-align: justify">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores ipsum maxime dolore
+                                cumque
+                                non odio. Libero ipsa vero facilis tempora vitae? Soluta facilis accusantium explicabo
+                                vero
+                                dolore iste aliquam nisi!
+
+                            </p>
+
+                        </div>
+
+
+                        <div class="row mb-3">
+                            <div class="col-lg-3 col-md-3 col-sm-3 user">
+                                <div
+                                    class="card-text user-panel d-flex flex-row justify-content-start align-items-center">
+                                    <img class="img-circle" src="/profile/dist/img/user2-160x160.jpg"
+                                        class="img-circle elevation-2" alt="User Image">
+                                    <div class="d-flex flex-column justify-content-center ml-3"
+                                        style="color: dimgray; font-size: x-small">
+                                        <a href="#" style="color: dimgray">
+                                            Eliud Tiemele,
+                                            <span>
+                                                Dévéloppeur
+                                            </span>
+                                        </a>
+                                        28/02/2018 à 18:00
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <p class="col-lg-9 col-md-9 col-sm-9" style="text-align: justify">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores ipsum maxime dolore
+                                cumque
+                                non odio. Libero ipsa vero facilis tempora vitae? Soluta facilis accusantium explicabo
+                                vero
+                                dolore iste aliquam nisi!
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="card-footer row d-flex justify-content-around">
+
+                        <div class="user-panel">
+                            <img class="img-circle" src="/profile/dist/img/user2-160x160.jpg"
+                                class="img-circle elevation-2" alt="User Image" style="width: 1cm">
+                        </div>
+
+                        <form class="form col-lg-11 col-md-11">
+                            <div class="form-group">
+                                <textarea type="text" name="search" class="form-control"
+                                    placeholder="Votre réponse"></textarea>
+                            </div>
+                            <div class="form-group float-right">
+                                <button type="submit" name="submit" class="btn btn-dark">
+                                    Envoyer
+                                </button>
+                            </div>
+                            <!-- /.input-group -->
+                        </form>
+
+                    </div>
+
+                </div>
+
+            </section>
+            <!-- /.content -->
+
+
+
+
+        </div>
+        <!-- /.content-wrapper -->
+
+        <!-- Control Sidebar -->
+        <aside class="control-sidebar control-sidebar-dark">
+            <!-- Control sidebar content goes here -->
+        </aside>
+        <!-- /.control-sidebar -->
+
+    </div>
+    <!-- ./wrapper -->
+
+
+
+    <!-- REQUIRED SCRIPTS -->
+    <%- include ../template/requiredScripts.ejs -%>
+
+
+
+</body>
+
+</html>

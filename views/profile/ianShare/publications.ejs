@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <title>
+        <%= title %>
+    </title>
+
+    <%- include ../template/head.ejs -%>
+
+
+    <link rel="stylesheet" href="/stylesheets/cloud.css">
+
+</head>
+
+<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+    <div class="wrapper">
+
+
+
+        <%- include ../template/navbar.ejs -%>
+
+
+        <%- include("../template/sidebar", {user:user}); -%>
+
+
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <div class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1 class="m-0 text-dark">Mes publications</h1>
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item text-warning">Accueil</a></li>
+                                <li class="breadcrumb-item text-warning">ianWork</a></li>
+                                <li class="breadcrumb-item active">Mon cloud</li>
+                            </ol>
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                    <!-- /.row -->
+                </div>
+                <!-- /.container-fluid -->
+            </div>
+            <!-- /.content-header -->
+
+
+
+
+            <!-- Main content -->
+            <section class="content">
+                <div class="container-fluid container-fichiers">
+
+
+
+                    <div class="card-footer bg-white">
+                        <ul class="mailbox-attachments d-flex align-items-stretch clearfix">
+
+                            <% for (i in files) { %>
+
+                            <li class="mailbox-attachment-icon"
+                                style="border:none; width: 130px; display: flex; flex-direction: column; justify-content: flex-start; padding: 0;">
+                                <i class="far fa-file-alt"></i>
+                                <a href="/users/iCloud/download/<%= files[i] %>" class="btn btn-default btn-sm float-right"
+                                    style="width: 35px; height: 35px; position: relative; left: 70px; bottom: 20px">
+                                    <i class="fas fa-download downloadButton"
+                                        style="position: relative; bottom: -2px"></i>
+                                </a>
+                                <p
+                                    style="font-size: 0.4cm; position: relative; bottom: 15px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">
+                                    <%= files[i] %>
+                                </p>
+                            </li>
+
+                            <% } %>
+
+                        </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-warning btn-lg" data-toggle="modal"
+                            data-target="#fileUpload"
+                            style="border-radius: 50%; position: absolute; bottom: 10px; right: 50px;">
+                            <i class="fas fa-plus"></i>
+                        </button>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="fileUpload" tabindex="-1" role="dialog"
+                            aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered" role="document">
+                                <form action="/ianShare/publications/upload" method="POST" enctype="multipart/form-data">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalScrollableTitle">
+                                                Uploader un nouveau fichier
+                                            </h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="custom-file">
+                                                <input type="file" class="custom-file-input" id="file" name="file">
+                                                <label class="custom-file-label" for="file" data-browse="Choisir">
+                                                    Selectionner un fichier
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-dismiss="modal">Fermer</button>
+                                            <button type="submit" class="btn btn-primary" value="Envoi">
+                                                Enregistrer
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+
+
+
+
+                    </div>
+                    <!--/. container-fluid -->
+            </section>
+            <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+
+        <!-- Control Sidebar -->
+        <%- include ../template/controlSidebar.ejs -%>
+        <!-- /.control-sidebar -->
+
+    </div>
+    <!-- ./wrapper -->
+
+    <!-- REQUIRED SCRIPTS -->
+    <%- include ../template/requiredScripts.ejs -%>
+
+    <script src="/javascripts/fileShowing.js"></script>
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <title><%= title %></title>
+
+    <%- include ../template/head.ejs -%>
+
+    <link rel="stylesheet" href="/stylesheets/ckeditor.css">
+    <script src="/ckeditor/ckeditor.js"></script>
+    <!--
+    <script src="https://cdn.ckeditor.com/4.8.0/full-all/ckeditor.js"></script>
+    -->
+
+</head>
+
+<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+    <div class="wrapper">
+
+
+
+        <%- include ../template/navbar.ejs -%>
+
+
+        <%- include("../template/sidebar", {user:user}); -%>
+
+
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <div class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1 class="m-0 text-dark">Mon éditeur</h1>
+                        </div><!-- /.col -->
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item text-warning">Accueil</a></li>
+                                <li class="breadcrumb-item text-warning">ianWork</a></li>
+                                <li class="breadcrumb-item active">MonEditeur</li>
+                            </ol>
+                        </div><!-- /.col -->
+                    </div><!-- /.row -->
+                </div><!-- /.container-fluid -->
+            </div>
+            <!-- /.content-header -->
+
+            <!-- Main content -->
+            <section class="content">
+                <div class="container-fluid">
+
+                    <!-- Main row -->
+                    <div class="row">
+
+
+
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <form action="" method="post" enctype="multipart/form-data">
+
+                                <textarea id="editor1" rows="2000">
+                                </textarea>
+
+                            </form>
+                        </div>
+
+
+
+
+
+                    </div>
+                    <!-- /.row -->
+                </div>
+                <!--/. container-fluid -->
+            </section>
+            <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+
+        <!-- Control Sidebar -->
+        <%- include ../template/controlSidebar.ejs -%>
+        <!-- /.control-sidebar -->
+
+    </div>
+    <!-- ./wrapper -->
+
+    <!-- REQUIRED SCRIPTS -->
+    <%- include ../template/requiredScripts.ejs -%>
+
+
+
+
+
+
+
+    <script>
+
+
+
+        CKEDITOR.replace('editor1');
+
+
+
+        /*
+        CKEDITOR.replace('editor1', {
+            toolbar: [
+                { name: 'document', items: ['Print'] },
+                { name: 'clipboard', items: ['Undo', 'Redo'] },
+                { name: 'styles', items: ['Format', 'Font', 'FontSize'] },
+                { name: 'basicstyles', items: ['Bold', 'Italic', 'Underline', 'Strike', 'RemoveFormat', 'CopyFormatting'] },
+                { name: 'colors', items: ['TextColor', 'BGColor'] },
+                { name: 'align', items: ['JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'] },
+                { name: 'links', items: ['Link', 'Unlink'] },
+                { name: 'paragraph', items: ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote'] },
+                { name: 'insert', items: ['Image', 'Table'] },
+                { name: 'tools', items: ['Maximize'] },
+                { name: 'editing', items: ['Scayt'] }
+            ],
+            customConfig: '',
+            disallowedContent: 'img{width,height,float}',
+            extraAllowedContent: 'img[width,height,align]',
+            extraPlugins: 'tableresize,uploadimage,uploadfile',
+            height: 800,
+            contentsCss: ['https://cdn.ckeditor.com/4.8.0/full-all/contents.css', 'mystyles.css'],
+            bodyClass: 'document-editor',
+            format_tags: 'p;h1;h2;h3;pre',
+            removeDialogTabs: 'image:advanced;link:advanced',
+            stylesSet: [
+                /* Inline Styles */
+        /*
+        { name: 'Marker', element: 'span', attributes: { 'class': 'marker' } },
+        { name: 'Cited Work', element: 'cite' },
+        { name: 'Inline Quotation', element: 'q' },
+        /* Object Styles */
+        /*
+        {
+            name: 'Special Container',
+            element: 'div',
+            styles: {
+                padding: '5px 10px',
+                background: '#eee',
+                border: '1px solid #ccc'
+            }
+        },
+        {
+            name: 'Compact table',
+            element: 'table',
+            attributes: {
+                cellpadding: '5',
+                cellspacing: '0',
+                border: '1',
+                bordercolor: '#ccc'
+            },
+            styles: {
+                'border-collapse': 'collapse'
+            }
+        },
+        { name: 'Borderless Table', element: 'table', styles: { 'border-style': 'hidden', 'background-color': '#E6E6FA' } },
+        { name: 'Square Bulleted List', element: 'ul', styles: { 'list-style-type': 'square' } }
+    ]
+});
+
+*/
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+
+	<title><%= title %></title>
+
+	<%- include ../template/head.ejs -%>
+
+</head>
+
+<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+	<div class="wrapper">
+
+		<%- include ../template/navbar.ejs -%>
+
+
+		<%- include("../template/sidebar", {user:user}); -%>
+
+
+
+		<!-- Content Wrapper. Contains page content -->
+		<div class="content-wrapper">
+			<!-- Content Header (Page header) -->
+			<div class="content-header">
+				<div class="container-fluid">
+					<div class="row mb-2">
+						<div class="col-sm-6">
+							<h1 class="m-0 text-dark">Mes projets</h1>
+						</div><!-- /.col -->
+						<div class="col-sm-6">
+							<ol class="breadcrumb float-sm-right">
+								<li class="breadcrumb-item text-warning">Accueil</a></li>
+								<li class="breadcrumb-item text-warning">IAN work</a></li>
+								<li class="breadcrumb-item active">Mes Projets</li>
+							</ol>
+						</div><!-- /.col -->
+					</div><!-- /.row -->
+				</div><!-- /.container-fluid -->
+			</div>
+			<!-- /.content-header -->
+
+
+
+
+
+
+			<div class="col-md-6">
+				<% for (i in projets) { %>
+				<div class="card">
+					<div class="card-header">
+						<h3 class="card-title">
+							<i class="fas fa-text-width"></i>
+							<%= projets[i].nom_projet %>
+						</h3>
+					</div>
+					<!-- /.card-header -->
+					<div class="card-body" style="height: 300px; overflow-y: scroll">
+						<dl>
+							<dt>Tâches à faire</dt>
+							<dd></dd>
+							<% taches = projets[i].taches.split("|") %>
+							<% for (j in taches) { %>
+							<%= taches[j] %> <br>
+							<% } %>
+							</dd>
+							<dt>Description</dt>
+							<dd><%= projets[i].description %></dd>
+							<dt>Date d'échéance</dt>
+							<dd><%= moment(projets[i].echeance).format("DD-MM-YYYY")  %></dd>
+							<dt>Membres du groupe</dt>
+							<dd>
+								<ol>
+									<% for (k in contacts) { %>
+									<% if (contacts[k].id_contact == projets[i].membre1) { %>
+									<li><%= contacts[k].prenoms %> <%= contacts[k].nom %></li>
+									<% } %>
+									<% } %>
+
+
+									<% for (k in contacts) { %>
+									<% if (contacts[k].id_contact == projets[i].membre2) { %>
+									<li><%= contacts[k].prenoms %> <%= contacts[k].nom %></li>
+									<% } %>
+									<% } %>
+
+
+									<% for (k in contacts) { %>
+									<% if (contacts[k].id_contact == projets[i].membre3) { %>
+									<li><%= contacts[k].prenoms %> <%= contacts[k].nom %></li>
+									<% } %>
+									<% } %>
+
+
+									<% for (k in contacts) { %>
+									<% if (contacts[k].id_contact == projets[i].membre4) { %>
+									<li><%= contacts[k].prenoms %> <%= contacts[k].nom %></li>
+									<% } %>
+									<% } %>
+
+
+									<% for (k in contacts) { %>
+									<% if (contacts[k].id_contact == projets[i].membre5) { %>
+									<li><%= contacts[k].prenoms %> <%= contacts[k].nom %></li>
+									<% } %>
+									<% } %>
+
+
+									<% for (k in contacts) { %>
+									<% if (contacts[k].id_contact == projets[i].membre6) { %>
+									<li><%= contacts[k].prenoms %> <%= contacts[k].nom %></li>
+									<% } %>
+									<% } %>
+
+
+									<% for (k in contacts) { %>
+									<% if (contacts[k].id_contact == projets[i].membre7) { %>
+									<li><%= contacts[k].prenoms %> <%= contacts[k].nom %></li>
+									<% } %>
+									<% } %>
+
+
+									<% for (k in contacts) { %>
+									<% if (contacts[k].id_contact == projets[i].membre8) { %>
+									<li><%= contacts[k].prenoms %> <%= contacts[k].nom %></li>
+									<% } %>
+									<% } %>
+
+								</ol>
+							</dd>
+						</dl>
+					</div>
+					<!-- /.card-body -->
+				</div>
+				<% } %>
+				<!-- /.card -->
+			</div>
+
+
+
+
+
+
+
+			<!-- Button trigger modal -->
+			<button type="button" class="btn btn-warning btn-lg" data-toggle="modal"
+				data-target="#exampleModalScrollable"
+				style="border-radius: 50%; position: absolute; bottom: 10px; right: 50px;">
+				<i class="fas fa-plus"></i>
+			</button>
+
+			<!-- Modal -->
+			<div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog"
+				aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+				<div class="modal-dialog modal-dialog-scrollable modal-dialog-centered" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalScrollableTitle">Ajouter un nouveau projet</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<form id="new_project_form" class="form">
+								<div class="form-group">
+									<input type="text" id="nom_projet" placeholder="Nom du projet" class="form-control"
+										required value="Projet1">
+								</div>
+								<div class="form-group">
+									<input type="date" name="echeance" id="echeance" placeholder="Date d'échéance"
+										class="form-control" required>
+								</div>
+								<div class="form-group">
+									<textarea name="description" id="description" placeholder="Description" rows="3"
+										class="form-control" required>La vie est belle</textarea>
+								</div>
+								<div class="form-group">
+									<select placeholder="Membre du groupe" onchange="addMember(this)"
+										class="form-control membre" data-last="1" style="margin: 3px">
+										<option value="" selected></option>
+										<% for (i in contacts) { %>
+										<option value="<%= contacts[i].id_contact %>">
+											<%= contacts[i].prenoms %> <%= contacts[i].nom %>
+										</option>
+										<% } %>
+									</select>
+								</div>
+								<div class="form-group">
+									<div class="form-inline" style="margin-bottom: 10px">
+										<input type="text" placeholder="Tâche du projet"
+											class="tache form-control col-md-12" data-last="1" oninput="addTask(this)">
+										<!--
+										<input type="number" placeholder="Durée (jours)"
+											class="dureeTache form-control col-md-4 offset-md-1" min="1">
+										-->
+									</div>
+								</div>
+								<div class="row float-right">
+									<button type="button" class="btn btn-secondary m-2"
+										data-dismiss="modal">Fermer</button>
+									<button type="submit" class="btn btn-warning m-2">Enregistrer</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+
+
+
+			<!-- Control Sidebar -->
+			<%- include ../template/controlSidebar.ejs -%>
+			<!-- /.control-sidebar -->
+
+		</div>
+		<!-- ./wrapper -->
+
+		<!-- REQUIRED SCRIPTS -->
+		<%- include ../template/requiredScripts.ejs -%>
+
+		<script src="/javascripts/zip.js"></script>
+
+
+		<script>
+			//	Scripts chargé d'augmenter dynamiquement la liste des membres et des tâches
+
+			function addMember(membre) {
+
+				membre = $(membre)
+
+				if (membre.attr("data-last") === "1") {
+					if ($.trim(membre.val()) != "") {
+						console.log(membre);
+						var elt = membre.clone()
+						membre.attr("data-last", "0")
+						elt.addClass("membre")
+						elt.insertAfter(membre)
+					}
+				}
+			}
+
+
+
+			function addTask(tache) {
+
+				if (tache.getAttribute("data-last") === "1") {
+					if (tache.value != "") {
+
+						tache = $(tache)
+
+						var elt = $(tache).parent().clone()
+
+						tache.next("input").attr("required", "")
+
+						tache.attr("data-last", "0")
+						nvlleTache = $(elt.children()[0])
+						duree = $(elt.children()[1])
+
+						var num = parseInt(tache.parent().parent().children().length + 1)
+
+						nvlleTache.val("")
+						nvlleTache.addClass("tache")
+
+						duree.val("")
+						duree.addClass("dureeTache")
+
+						elt.insertAfter(tache.parent())
+					}
+				}
+			}
+
+
+
+			$("#new_project_form").submit((e) => {
+
+				e.preventDefault()
+
+				//	Recupération de la liste des membres
+				let object = $('select[class*="membre"]')
+				let membres = []
+
+				console.log("Salut")
+
+
+				for (const iterator of object) {
+					membres.push($(iterator).val());
+				}
+				membres.pop()
+
+				var n_membres = {}
+				for (let index = 0; index < membres.length; index++) {
+					n_membres["membre" + (index + 2)] = parseInt(membres[index])
+				}
+
+
+				//	Recupération de la liste des tâches du projet
+
+				object = $('input[class*="tache"]')
+				let taches = []
+
+				for (const iterator of object) {
+					taches.push($(iterator).val());
+				}
+				taches.pop()
+
+				taches = taches.join("|")
+
+				console.log(taches)
+
+
+				//	Recupération de la liste des durées des différentes tâches
+
+				/*
+				object = $('input[class*="dureeTache"]')
+				let durees = []
+
+				for (const iterator of object) {
+					durees.push($(iterator).val());
+				}
+				durees.pop()
+
+				*/
+
+				/*
+				var n_taches = []
+
+				for (let i = 0; i < taches.length; i++) {
+					const element = taches[i];
+					n_taches.push([taches[i], durees[i]])
+				}
+				*/
+
+				var data = {
+					"nom_projet": $("#nom_projet").val(),
+					"echeance": $("#echeance").val(),
+					"description": $("#description").val(),
+					"taches": taches,
+					...n_membres
+				}
+
+				console.log(data);
+
+
+
+				$.post("/ianWork/new_project", data, (result) => {
+					console.log(result[1])
+					if (result[1]) {
+						show_success_box(result[0])
+					}
+					else {
+						show_error_box(result[0])
+					}
+				})
+
+			})
+
+
+
+
+		</script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <title>
+        <%= title %>
+    </title>
+
+    <%- include ../template/head.ejs -%>
+
+    <link rel="stylesheet" href="/stylesheets/table.css">
+
+</head>
+
+<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+    <div class="wrapper">
+
+
+
+        <%- include ../template/navbar.ejs -%>
+
+
+        <%- include("../template/sidebar", {user:user}); -%>
+
+
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <div class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1 class="m-0 text-dark">Mes contacts</h1>
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item text-warning">Accueil</li>
+                                <li class="breadcrumb-item text-warning">ianMeet</li>
+                                <li class="breadcrumb-item active">Mes contacts</li>
+                            </ol>
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                    <!-- /.row -->
+                </div>
+                <!-- /.container-fluid -->
+            </div>
+            <!-- /.content-header -->
+
+
+
+
+            <!-- Main content -->
+            <section class="content">
+                <div class="container-fluid container-fichiers">
+
+
+
+
+
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title">Mes contacts</h3>
+
+                                    <div class="card-tools">
+                                        <div class="input-group input-group-sm" style="width: 200;">
+                                            <input type="text" name="table_search" class="form-control float-right"
+                                                placeholder="Rechercher">
+
+                                            <div class="input-group-append">
+                                                <button type="submit" class="btn btn-default"><i
+                                                        class="fas fa-search"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /.card-header -->
+                                <div class="card-body table-responsive p-0">
+                                    <table class="table table-stripped">
+
+
+                                        <% for (i in contacts) { %>
+                                        <% if ( i % 2 == 0 ) { %>
+                                        <tr>
+                                            <% } %>
+
+                                            <td class="col-lg-6 col-md-6">
+                                                <a data-toggle="modal" onclick="show_contact_details(this)"
+                                                    data-contact="<%= contacts[i].email %>"
+                                                    data-name="<%= contacts[i].prenoms %> <%= contacts[i].nom %>"
+                                                    data-email="<%= contacts[i].email %>"
+                                                    data-tel="<%= contacts[i].tel %>">
+                                                    <i class="nav-icon fas fa-user-circle fa-2x"
+                                                        style="color: black"></i>
+                                                    <div style="margin: 5px"><%= contacts[i].prenoms %>
+                                                        <%= contacts[i].nom %></div>
+                                                </a>
+                                            </td>
+
+
+                                            <% if ( i % 2 != 0 ) { %>
+                                            </tr>
+                                            <% } %>
+                                        <% } %>
+
+
+
+
+                                    </table>
+                                </div>
+                                <!-- /.card-body -->
+                            </div>
+                            <!-- /.card -->
+                        </div>
+                    </div>
+                    <!-- /.row -->
+
+
+
+
+                    <!--    Show contact modals -->
+                    <div class="modal fade" id="contactModal" tabindex="-1" role="dialog" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered modal-lg">
+                            <div class="modal-content">
+
+                                <div class="row"
+                                    style="display: flex; flex-direction:row; justify-content: space-around; padding: 10px">
+                                    <!-- Profile Image -->
+                                    <div class="card card-primary card-outline col-lg-4 col-md-4">
+                                        <div class="card-body box-profile">
+                                            <div class="text-center">
+                                                <img id="contact_img" class="profile-user-img img-fluid img-circle"
+                                                    alt="User profile picture">
+                                            </div>
+
+                                            <h3 class="profile-username text-center" id="contact_name"></h3>
+
+                                            <p class="text-muted text-center" id="contact_prof"></p>
+
+                                            <ul class="list-group list-group-unbordered mb-3">
+                                                <li class="list-group-item" id="contact_contacts">
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <!-- /.card-body -->
+                                    </div>
+                                    <!-- /.card -->
+
+                                    <!-- About Me Box -->
+                                    <div class="card card-primary col-lg-7 col-md-7" style="padding: 0">
+                                        <div class="card-header">
+                                            <h3 class="card-title">A propos de moi</h3>
+                                        </div>
+                                        <!-- /.card-header -->
+                                        <div class="card-body">
+                                            <strong><i class="fas fa-book mr-1"></i> Education</strong>
+
+                                            <p class="text-muted" id="contact_education"></p>
+
+                                            <hr>
+
+                                            <strong><i class="fas fa-map-marker-alt mr-1"></i> Résidence</strong>
+
+                                            <p class="text-muted" id="contact_residence"></p>
+
+                                            <hr>
+
+                                            <strong><i class="fas fa-pencil-alt mr-1"></i> Aptitudes</strong>
+
+                                            <p class="text-muted" id="contact_aptitudes"></p>
+
+                                            <hr>
+
+                                            <strong><i class="far fa-file-alt mr-1"></i> Notes</strong>
+
+                                            <p class="text-muted" id="contact_notes"></p>
+                                        </div>
+                                        <!-- /.card-body -->
+                                    </div>
+                                    <!-- /.card -->
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-warning btn-lg" data-toggle="modal"
+                        data-target="#add_contact_modal"
+                        style="border-radius: 50%; position: absolute; bottom: 10px; right: 50px;">
+                        <i class="fas fa-plus"></i>
+                    </button>
+
+                    <!-- New contact modal -->
+                    <div class="modal fade" id="add_contact_modal" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <form id="add_contact">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalScrollableTitle">Ajouter un nouveau
+                                            contact
+                                        </h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            <div class="form-inline">
+                                                <input type="text" name="nom" id="nom" placeholder="Nom"
+                                                    class="form-control col-md-4" required>
+                                                <input type="text" name="prenoms" id="prenoms" placeholder="Prénoms"
+                                                    class="form-control col-md-7 offset-md-1">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="email" name="email" id="email" placeholder="Adresse mail"
+                                                class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="form-group">
+                                                <input type="text" name="numero-1" id="numero-1"
+                                                    placeholder="Numéro de téléphone" onkeypress="addNumber(this)"
+                                                    class="form-control col-md-12" style="margin-bottom: 10px"
+                                                    data-last="1">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-dismiss="modal">Fermer</button>
+                                        <button type="submit" class="btn btn-warning">Enregistrer</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                </div>
+                <!--/. container-fluid -->
+            </section>
+            <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+
+
+        <!-- Control Sidebar -->
+        <%- include ../template/controlSidebar.ejs -%>
+        <!-- /.control-sidebar -->
+
+    </div>
+    <!-- ./wrapper -->
+
+
+
+
+    <!-- REQUIRED SCRIPTS -->
+    <%- include ../template/requiredScripts.ejs -%>
+
+
+
+
+
+    <script>
+        //	Scripts chargé d'augmenter dynamiquement la liste des membres et des tâches
+
+        /*
+        function addNumber(numero) {
+            var numero = $(numero)
+            if (numero.attr("data-last") === "1") {
+                if ($.trim(numero.val()) != "") {
+                    var elt = numero.clone()
+                    numero.attr("data-last", "0")
+                    elt.val("")
+                    elt.attr("id", "numero-" + parseInt(numero.parent().children().length + 1))
+                    elt.attr("name", elt.attr("id"))
+                    elt.insertAfter(numero)
+                }
+            }
+        }
+        */
+
+        $("#add_contact").submit((e) => {
+            e.preventDefault()
+
+            var data = {
+                nom: $("#nom").val(),
+                prenoms: $("#prenoms").val(),
+                email: $("#email").val(),
+                telephone: $("#numero-1").val()
+            }
+
+            $("#add_contact_modal").modal('hide')
+
+            $.post("/ianMeet/add_contact", data, function (result) {
+                if (result[1]) {
+                    show_success_box(result[0])
+                } else {
+                    show_error_box(result[0])
+                }
+            })
+        })
+
+
+        function show_contact_details(e) {
+
+            var data = {
+                email: $(e).attr("data-contact"),
+                name: $(e).attr("data-name")
+            }
+
+            $("#contact_name").children().replaceWith(data.name)
+            data.email = (data.email != undefined) ? data.email : ""
+            data.tel = (data.tel != undefined) ? data.tel : ""
+
+            $("#contact_contacts").html(data.email + "<br>" + data.tel)
+
+
+            $.post("/ianMeet/show_contact", data, (result) => {
+
+                if (result[0].length == 0) {
+                    $("#contact_img").replaceWith("<i class='nav-icon fas fa-user-circle fa-5x'></i>")
+                } else {
+                    if (result[0].photo_profil != undefined) {
+                        $("#contact_img").attr("src", "/uploads/avatar/" + result[0].photo_profil)
+                    } else {
+                        $("#contact_img").replaceWith("<i class='nav-icon fas fa-user-circle fa-5x'></i>")
+                    }
+
+                    $("#contact_prof").html(result[0].profession)
+                    $("#contact_education").html(result[0].education)
+                    $("#contact_residence").html(result[0].residence)
+                    $("#contact_aptitudes").html(result[0].aptitudes)
+                        ("#contact_notes").html(result[0].notes)
+
+                }
+
+            })
+
+
+            $("#contactModal").modal("show")
+
+        }
+
+
+    </script>
+
+
+</body>
+
+</html>

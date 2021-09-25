@@ -1,0 +1,50 @@
+#footer-text {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+
+#logo {
+    width: 60%;
+    height: 40%;
+}
+
+.trans{
+    background-color: #d8aa46;
+    opacity: 0.7 ;
+    border-radius: 15px;
+}
+
+.login, .inscription {
+    font-size: 150%;
+    color: black;
+    margin-bottom: 5px; 
+}
+
+#main-title {
+    color: wheat;
+    font-weight: bold;
+    font-size: 400%;
+    font-family: "Tangerine";
+    text-align: right;
+}
+
+#main-title h2 {
+    color: wheat;
+    font-weight: bold;
+    font-size: 400%;
+    font-family: "Tangerine";
+    text-align: right;
+}
+
+fieldset {
+    margin-bottom: 3%
+}
+
+input.error {
+    border: 3px solid red;
+}
+
+.error {
+    color: red;
+}
+

@@ -1,0 +1,172 @@
+<!-- Main Sidebar Container -->
+<aside class="main-sidebar sidebar-dark-light elevation-4">
+    <!-- Brand Logo -->
+    <div class="brand-link">
+        <img src="/images/logoIan.png" alt="Logo IAN" class="brand-image img-circle elevation-3" style="opacity: .8">
+        <span class="brand-text font-weight-light">IAN</span>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <!-- Sidebar user panel (optional) -->
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+            <div class="image">
+                <% if(user.photo_profil) { %>
+                <img src="/uploads/avatar/<%= user.photo_profil %>" class="img-circle elevation-2" alt="User Image">
+                <% } else { %>
+                <i class="nav-icon fas fa-user-circle fa-2x"></i>
+                <% } %>
+            </div>
+            <div class="info">
+                <a href="/monprofile/" class="d-block"><%= user.prenoms ? user.prenoms : "XXXXXXXX" %>
+                    <%= user.nom %></a>
+            </div>
+        </div>
+
+        <!-- Sidebar Menu -->
+        <nav class="mt-2">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+
+                <!-- 
+                <li class="nav-item has-treeview">
+                    <a href="/accueil/" class="nav-link">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <p>
+                            Tableau de bord
+                        </p>
+                    </a>
+                </li>
+                -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <li class="nav-header">IAN work</li>
+                <li class="nav-item">
+                    <a href="/ianWork/mesprojets/" class="nav-link">
+                        <i class="fas fa-project-diagram nav-icon"></i>
+                        <p>Mes Projets</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/ianWork/agenda/" class="nav-link">
+                        <i class="fas fa-calendar-alt nav-icon"></i>
+                        <p>Mon Calendrier</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/ianWork/editeur/" class="nav-link">
+                        <i class="fas fa-edit nav-icon"></i>
+                        <p>Mon Editeur</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/ianWork/videoconference/" class="nav-link">
+                        <i class="fas fa-person-booth nav-icon"></i>
+                        <p>Ma Salle de Conférence</p>
+                    </a>
+                </li>
+                <li class="nav-item has-treeview">
+                    <a class="nav-link" id="mail_link">
+                        <i class="nav-icon far fa-envelope"></i>
+                        <p>
+                            Ma Messagérie
+                            <!--    
+                            <i class="fas fa-angle-left right"></i>
+                            -->
+                        </p>
+                    </a>
+                    <!--
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="/ianWork/messageriepublique/" class="nav-link">
+                                <i class="far fa-envelope-open nav-icon"></i>
+                                <p>Groupe</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/ianWork/messageriepv/" class="nav-link">
+                                <i class="fas fa-envelope-square nav-icon"></i>
+                                <p>Privé</p>
+                            </a>
+                        </li>
+                    </ul>
+                    -->
+                </li>
+                <li class="nav-item">
+                    <a href="/ianWork/cloud/" class="nav-link">
+                        <i class="fas fa-cloud nav-icon"></i>
+                        <p>Mon Cloud</p>
+                    </a>
+                </li>
+
+
+
+
+
+
+
+
+
+
+
+
+                <li class="nav-header">IAN meet</li>
+                <li class="nav-item">
+                    <a href="/ianMeet/contacts/" class="nav-link">
+                        <i class="fas fa-address-book nav-icon"></i>
+                        <p>Mes Contacts</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/ianMeet/forum/" class="nav-link">
+                        <i class="fas fa-users nav-icon"></i>
+                        <p>Mon Forum</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/ianMeet/annuaire/" class="nav-link">
+                        <i class="fas fa-user nav-icon"></i>
+                        <p>Mon iAnnuaire</p>
+                    </a>
+                </li>
+
+
+
+
+
+                <li class="nav-header">IAN share</li>
+                <li class="nav-item">
+                    <a href="/ianShare/iCloud/" class="nav-link">
+                        <i class="fas fa-cloud-download-alt nav-icon"></i>
+                        <p>ian Cloud</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/ianShare/publications/" class="nav-link">
+                        <i class="fas fa-cloud-upload-alt nav-icon"></i>
+                        <p>Mes Publications</p>
+                    </a>
+                </li>
+
+
+
+            </ul>
+        </nav>
+        <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+</aside>

@@ -1,0 +1,53 @@
+{
+    "file-image": [
+        "png",
+        "jpeg",
+        "svg",
+        "jpg"
+    ],
+    "file-archive": [
+        "tar",
+        "tar.gz",
+        "rar",
+        "zip",
+        "7z"
+    ],
+    "file-audio": [
+        "mp3",
+        "wma"
+    ],
+    "file-video": [
+        "mp4",
+        "3gp",
+        "wmv",
+        "webm"
+    ],
+    "file-word": [
+        "docx",
+        "dotx",
+        "doc",
+        "odt"
+    ],
+    "file-powerpoint": [
+        "pptx",
+        "potx",
+        "odp"
+    ],
+    "file-excel": [
+        "xlsx",
+        "xltx",
+        "odx",
+        "csv"
+    ],
+    "file-pdf": [
+        "pdf"
+    ],
+    "file-code": [
+        "py",
+        "c",
+        "cpp",
+        "java",
+        "js",
+        "php"
+    ]
+}

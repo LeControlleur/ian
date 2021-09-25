@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <title>
+        <%= title %>
+    </title>
+
+    <%- include ../template/head.ejs -%>
+
+
+    <link rel="stylesheet" href="/stylesheets/forum.css">
+
+</head>
+
+<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+    <div class="wrapper">
+
+
+
+        <%- include ../template/navbar.ejs -%>
+
+
+        <%- include("../template/sidebar", {user:user}); -%>
+
+
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <div class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1 class="m-0 text-dark">
+                                <%= title %>
+                            </h1>
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item text-warning">Accueil</a></li>
+                                <li class="breadcrumb-item text-warning">ianWork</a></li>
+                                <li class="breadcrumb-item active">Mon cloud</li>
+                            </ol>
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                    <!-- /.row -->
+                </div>
+                <!-- /.container-fluid -->
+            </div>
+            <!-- /.content-header -->
+
+
+
+
+            <section class="content row">
+
+                <!--    List of catégories -->
+                <aside class="col-lg-3 col-md-3 col-sm-3">
+                    <ul class="list-group">
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <a href="">
+                                Mathématiques
+                            </a>
+                            <span class="badge badge-secondary badge-pill">2</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <a href="">
+                                Informatiques
+                            </a>
+                            <span class="badge badge-secondary badge-pill">2</span>
+                        </li>
+                    </ul>
+                </aside>
+
+                <div class="card col-lg-8 col-md-8 col-sm-8">
+                    <div class="card-header row d-flex justify-content-around">
+                        <form class="search-form col-lg-9">
+                            <div class="input-group">
+                                <input type="text" name="search" class="form-control" placeholder="Recherche">
+
+                                <div class="input-group-append">
+                                    <button type="submit" name="submit" class="btn btn-dark">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <!-- /.input-group -->
+                        </form>
+
+
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#questionModal">
+                            Poser une question
+                        </button>
+
+
+                    </div>
+
+
+
+                    <div class="card-body">
+                        <a href="" style="color: black">
+                            <h3>
+                                Quelles sont les principales différences entre programmation fonctionnelle et
+                                programmation
+                                orientée objet ?
+                            </h3>
+                        </a>
+                        <div class="card-text user-panel d-flex flex-row justify-content-start align-items-center">
+                            <img class="img-circle" src="/profile/dist/img/user2-160x160.jpg"
+                                class="img-circle elevation-2" alt="User Image" style="width: 1cm">
+                            <div class="d-flex flex-column justify-content-center ml-3" style="color: dimgray">
+                                <a href="#" style="color: dimgray">
+                                    Eliud Tiemele,
+                                    <span>
+                                        Dévéloppeur
+                                    </span>
+                                </a>
+                                28/02/2018 à 18:00
+                            </div>
+                        </div>
+
+
+                        <hr>
+
+
+
+                        <a href="" style="color: black">
+                            <h3>
+                                Quelles sont les principales différences entre programmation fonctionnelle et
+                                programmation
+                                orientée objet ?
+                            </h3>
+                        </a>
+                        <div class="card-text user-panel d-flex flex-row justify-content-start align-items-center">
+                            <img class="img-circle" src="/profile/dist/img/user2-160x160.jpg"
+                                class="img-circle elevation-2" alt="User Image" style="width: 1cm">
+                            <div class="d-flex flex-column justify-content-center ml-3" style="color: dimgray">
+                                <a href="#" style="color: dimgray">
+                                    Eliud Tiemele,
+                                    <span>
+                                        Dévéloppeur
+                                    </span>
+                                </a>
+                                28/02/2018 à 18:00
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+            </section>
+            <!-- /.content -->
+
+
+
+
+        </div>
+        <!-- /.content-wrapper -->
+
+        <!-- Control Sidebar -->
+        <aside class="control-sidebar control-sidebar-dark">
+            <!-- Control sidebar content goes here -->
+        </aside>
+        <!-- /.control-sidebar -->
+
+    </div>
+    <!-- ./wrapper -->
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- New questio modal  -->
+    <div class="modal fade" id="questionModal" tabindex="-1" role="dialog" aria-labelledby="questionModalTitle"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="questionModalTitle">
+                        Poser une question
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class="form" id="questionForm">
+                        <div class="form-group">
+                            <textarea class="form-control" aria-label="With textarea"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <select class="form-control" id="categorie">
+                                <option>Mathématiques</option>
+                                <option>Physique-Chimie</option>
+                                <option>Informatique</option>
+                                <option>Histoire</option>
+                                <option>Géographie</option>
+                                <option>Autres</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                    <button type="button" class="btn btn-warning">Enregistrer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- REQUIRED SCRIPTS -->
+    <%- include ../template/requiredScripts.ejs -%>
+
+
+    <!--    Script qui affiche un input pour la saisie d'une catégorie si "autres" est sélectionné  -->
+    <script>
+
+        $("select").change(function () {
+            $("select :selected").each(function () {
+                if ($(this).text() == "Autres") {
+
+                    var catForm = document.createElement("div")
+                    catForm.className = "form-group"
+
+                    var cat = document.createElement("input")
+                    cat.className = "form-control"
+                    cat.id = "nvlle_categorie"
+
+                    var catForm = $(catForm).append($(cat).attr("placeholder", "Veuillez préciser la catégorie"))
+
+                    $(this).parent().parent().parent().append(catForm)
+
+                }
+
+            });
+        })
+
+    </script>
+
+
+</body>
+
+</html>
